@@ -1,0 +1,129 @@
+<template>
+    <div class="root">
+        <div>
+            <el-button @click="changeRef" type="success">点击改变Ref</el-button>
+            {{ refObj }}
+        </div>
+        <div>
+            <el-button @click="changeToRef" type="primary">点击改变toRef</el-button>
+            {{ toRefObj }}
+        </div>
+
+        <p>
+            ref界面会更新,就像v-model一样,toRef界面不会更新,会影响原始数据,toRefs是toRef的集合，当然也不会更新,...toRefs能够直接读取对象中的key值
+        </p>
+        <!--        <input type="text" v-focus/>-->
+        <el-input type="text" class="inputText" v-focus></el-input>
+        <div style="margin-top: 100px">
+            <tag :params="{ color: 'red', innerHTML: '你好呀' }"></tag>
+        </div>
+        <!-- ------------------------------------- -->
+        <div id="dynamic-arguments-example" class="demos full-page">
+            <input type="range" min="0" max="200" v-model="pinPadding"/>
+            <p v-pin:[direction]="pinPadding">Stick me {{ pinPadding }}px from the {{ direction }} of the page</p>
+        </div>
+        <p v-demo="{color:'red'}">张湾</p>
+        <!-- ------------------------------------- -->
+        <p v-hidePhone="phoneNumber"></p>
+        <el-button @click="showModal">显示modal</el-button>
+        <teleport to="body">
+            <modal v-if="show" @dblclick="closeModule"></modal>
+        </teleport>
+
+    </div>
+</template>
+<script>
+    import {h, toRef, reactive, toRefs, ref, onMounted, onUnmounted, getCurrentInstance} from "vue";
+
+    export default {
+        name: "NY",
+        data() {
+            return {
+                phoneNumber: 13671121854,
+                direction: "left",
+                pinPadding: 100,
+            };
+        },
+
+        setup() {
+            const obj1 = reactive({name: "你改变不了我", age: 12});
+            const toRefObj = toRef(obj1, "name");
+
+            const obj2 = reactive({name: "你能改变我", age: 15});
+            const refObj = ref(obj2.age);
+            const show = ref(false);
+            const {ctx} = getCurrentInstance()
+            onMounted(() => {
+                ctx.mittBus.$on('emitThing', (val) => {
+                    console.log(val)
+                })
+            })
+            onUnmounted(() => {
+                ctx.mittBus.$off('emitThing')
+            })
+
+            function showModal() {
+                show.value = true
+            }
+
+            function closeModule() {
+                show.value = false
+            }
+
+            function changeRef() {
+                refObj.value = "我已经被改变了";
+            }
+
+            function changeToRef() {
+                toRefObj.value = "糟糕,我出来了";
+            }
+
+            return {toRefObj, refObj, changeRef, changeToRef, show, showModal, closeModule};
+        },
+    };
+</script>
+<style scoped lang="scss">
+    .inputText {
+        width: 100px;
+    }
+
+    .root {
+        position: relative;
+    }
+
+    .demo {
+        font-family: sans-serif;
+        border: 1px solid #eee;
+        border-radius: 2px;
+        padding: 20px 30px;
+        margin-top: 1em;
+        margin-bottom: 40px;
+        user-select: none;
+        overflow-x: auto;
+    }
+
+    #dynamic-arguments-example {
+        border: 1px solid black;
+        width: 700px;
+        height: 200px;
+        position: relative;
+    }
+
+    #modal {
+        left: 0;
+        top: 0;
+        z-index: 100;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.6);
+        position: fixed;
+        cursor: pointer;
+    }
+
+    #aa {
+        color: red;
+        width: 100px;
+        height: 100px;
+        border: 1px solid black;
+    }
+</style>

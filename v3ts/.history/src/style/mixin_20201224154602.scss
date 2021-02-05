@@ -1,0 +1,23 @@
+//flex布局
+@mixin flexLay($h: space-between, $z:center, $d:column, $overflow:nowrap) {
+    display: flex;
+    justify-content: $h;
+    align-items: $z;
+    flex-direction: $d;
+    flex-wrap: $overflow;
+}
+
+//文字超出显示省略号
+@mixin textOverFlow() {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//上下左右居中
+@mixin blockCenter() {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50% -50%);
+}
