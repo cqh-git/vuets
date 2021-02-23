@@ -14,7 +14,7 @@ const addText = (options: any) => {
         render() {
             return h(BulletFrame,
                 {
-                    name,
+                    name,//通过props传参数name
                     showText,//Boolen值,判断是否显示隐藏
                     class: 'myClass',//添加类名
                     title: '我是title提示',//添加title提示
