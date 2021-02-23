@@ -9,7 +9,7 @@
     </div>
 </template>
 <script>
-    import {openModal} from './modal/BulletFrame.ts'
+    import {addText} from './modal/BulletFrame.ts'
 
     export default {
         name: 'Home',
@@ -20,12 +20,11 @@
         },
         methods: {
             showTexts() {
-                const vm = openModal({
+                addText({
                     name: '张三',
                     age: 100,
                     showText: true
                 })
-                console.log(vm)
             }
         }
     }

@@ -17,9 +17,9 @@ export default {
     'iconTitle': {
         props: {
             title: {
-                type: Number,
+                type: String,
                 required: true,
-                default: 100,
+                default: '我是默认的',
             }
         },
         render() {

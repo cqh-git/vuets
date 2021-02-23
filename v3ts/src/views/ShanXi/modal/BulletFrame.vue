@@ -1,8 +1,10 @@
 <template>
     <div class="sonClass" :level="level">
         <div v-if="showText" @dblclick="eventBus" :level="level">
-            name:{{name}}---age:
+            name:{{name}}
+            age:
             <slot name="age"></slot>
+            sex:
             <slot name="sex"></slot>
         </div>
     </div>
