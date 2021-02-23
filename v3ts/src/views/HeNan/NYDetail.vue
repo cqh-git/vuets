@@ -27,7 +27,7 @@
         <p v-hidePhone="phoneNumber"></p>
         <el-button @click="showModal">显示modal</el-button>
         <teleport to="body">
-            <modal v-if="show" @dblclick="closeModule"></modal>
+            <div v-if="show" @dblclick="closeModule" id="modal"></div>
         </teleport>
 
     </div>
@@ -64,6 +64,7 @@
 
             function showModal() {
                 show.value = true
+                console.log(show)
             }
 
             function closeModule() {

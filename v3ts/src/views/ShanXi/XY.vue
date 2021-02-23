@@ -1,15 +1,17 @@
 <template>
-	<div class="root">
-		{{dataValue}}111111111111111111111
-	</div>
+    <div class="root">
+        <slot-component>
+            <template v-slot:la="scope">
+                张三{{scope.msg}}
+            </template>
+        </slot-component>
+    </div>
 </template>
 <script>
-	export default {
-		name: 'Home',
-		data() {
-			return {
-				dataValue: '我是a1页面'
-			}
-		},
-	}
+    import slotComponent from './modal/slot.vue'
+
+    export default {
+        name: 'Home',
+        components: {slotComponent}
+    }
 </script>

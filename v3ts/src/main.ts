@@ -15,6 +15,7 @@ import directiveObj from "@/directive";
 import mittBus from '@/plugIns';
 
 const app = createApp(App)
+console.log(app,createApp)
 app.config.globalProperties.mittBus = mittBus
 //自定义组件
 Object.entries(componentObj).forEach(([key, value]) => {

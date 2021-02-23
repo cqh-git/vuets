@@ -1,6 +1,6 @@
 <template>
     <div class="root">
-
+        我是洛阳
     </div>
 </template>
 
@@ -11,7 +11,7 @@
         name: 'a2',
         setup() {
             getData().then((res) => {
-				console.log(res)
+                console.log(res)
             })
             return {}
         }

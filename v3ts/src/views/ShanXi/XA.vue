@@ -1,15 +1,32 @@
 <template>
-	<div class="root">
-		{{dataValue}}111111111111111111111
-	</div>
+    <div class="root">
+        <button @click="showTexts">showText</button>
+        <div id="textBox"></div>
+        <iconTitle :title="title">
+            <template v-slot:Subtitle="scope">我是副标题{{scope.hello}}</template>
+            <template v-slot>我是默认的</template>
+        </iconTitle>
+    </div>
 </template>
 <script>
-	export default {
-		name: 'Home',
-		data() {
-			return {
-				dataValue: '我是a1页面'
-			}
-		},
-	}
+    import {openModal} from './modal/BulletFrame.ts'
+
+    export default {
+        name: 'Home',
+        data() {
+            return {
+                title: '我是标题'
+            }
+        },
+        methods: {
+            showTexts() {
+                const vm = openModal({
+                    name: '张三',
+                    age: 100,
+                    showText: true
+                })
+                console.log(vm)
+            }
+        }
+    }
 </script>
