@@ -29,7 +29,11 @@ export default {
                 h('p', {}, (this as any).$slots.Subtitle({
                     hello: '欢迎你'
                 })),
-                h('p', {}, (this as any).$slots.default())
+                h('p', {}, (this as any).$slots.default()),
+                h('p', {}, '空荡荡的'),
+                h('p', {innerHTML: "嗯哼"}),
+                // h('p', {}, {son1: () => 'son1'}),//v-slot:son1
+                // h('p', {}, {son2: () => 'son2'})//v-slot:son2
             ])
         },
     }

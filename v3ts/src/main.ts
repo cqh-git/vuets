@@ -4,6 +4,8 @@ import store from './store'
 import router from './router'
 import ElementPlus from 'element-plus';
 import VueI18n from '@/components/language/index'
+
+import 'echarts/extension/bmap/bmap'
 // 主题换肤
 import './style/element-variables.scss'
 import common from './units/common'
@@ -14,8 +16,9 @@ import componentObj from '@/component';
 import directiveObj from "@/directive";
 import mittBus from '@/plugIns';
 
+
 const app = createApp(App)
-console.log(app,createApp)
+
 app.config.globalProperties.mittBus = mittBus
 //自定义组件
 Object.entries(componentObj).forEach(([key, value]) => {

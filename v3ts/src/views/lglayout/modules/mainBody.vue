@@ -26,7 +26,7 @@ export default {
 .main {
   width: 100%;
   height: calc(100% - 60px);
-  background: #ebf5f8;
+  /*background: #ebf5f8;*/
   p {
     color: red;
   }

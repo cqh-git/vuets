@@ -10,5 +10,6 @@
 @import url("./style/common.scss");
 @import url("./style/sideBar.scss");
 @import url("./style/component.scss");
+@import url("./style/reset.scss");
 // @import url("./style/mixin.scss");
 </style>

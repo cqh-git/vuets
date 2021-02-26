@@ -23,8 +23,8 @@ const addText = (options: any) => {
                         if (val == false) destory();
                     }
                 }, {
-                    age: () => age,//v-slot:age的插槽
-                    sex: (prop: any) => this.sex//v-slot:sex的插槽
+                    age: () => age,//生成v-slot:age的插槽对应<slot name='age'></slot>
+                    sex: (prop: any) => this.sex//生成v-slot:sex的插槽对应<slot name='sex'></slot>
                 })
         },
         props: {

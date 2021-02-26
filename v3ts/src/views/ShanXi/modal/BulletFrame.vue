@@ -27,11 +27,6 @@
                 type: String,
                 default: '我是默认姓名'
             },
-            age: {
-                type: Number,
-                default: 0
-            }
-
         },
         watch: {
             age(a, b) {

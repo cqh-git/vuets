@@ -5,6 +5,8 @@
         <iconTitle :title="title">
             <template v-slot:Subtitle="scope">我是副标题{{scope.hello}}</template>
             <template v-slot>我是默认的</template>
+            <template v-slot:son1></template>
+            <template v-slot:son2="scope">123{{scope.name}}</template>
         </iconTitle>
     </div>
 </template>
