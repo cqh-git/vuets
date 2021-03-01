@@ -21,9 +21,9 @@
         methods: {
             initCharts() {
                 const myChart = echarts.init(document.getElementById('map'));
-                const scatter = [{name: '金茂大厦', value: [121.50109, 31.23691]}, {
-                    name: '火车北站',
-                    value: [121.47039, 31.25210]
+                const scatter = [{name: '嘉北郊野公园', value: [121.20591, 31.365026]}, {
+                    name: '松江南站',
+                    value: [121.23753, 30.991561]
                 }, {
                     name: '宝山钢铁厂',
                     value: [121.43383, 31.43867]
@@ -37,6 +37,12 @@
                 }, {
                     name: '大世界',
                     value: [121.47439, 31.23026]
+                }, {
+                    name: '上海迪士尼',
+                    value: [121.670873, 31.14659]
+                }, {
+                    name: '光明瑞华果园',
+                    value: [121.335266, 31.821963]
                 }];
                 myChart.setOption({
                     tooltip: {
@@ -54,20 +60,34 @@
                         type: 'lines',
                         zlevel: 2,
                         coordinateSystem: 'bmap',
+                        symbol: 'circle',
+                        effect: {
+                            color: '#00FF90',
+                            show: true,
+                            period: 2,
+                            trailLength: 0.01,
+                            symbol: 'circle',
+                            symbolSize: 4,
+                            loop: true
+                        },
+                        lineStyle: {
+                            color: "#a6c84c",
+                            type: 'dashed',
+                            width: 1,
+                            opacity: 0.1,
+                            curveness: 0.1,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)',
+                            shadowBlur: 10
+                        },
                         data: [{
-                            "fromName": "黑龙江",
-                            "toName": "珠海",
-                            "coords": [[126.661669, 45.742347], [113.576726, 22.270715]]
+                            "fromName": "东滩湿地公园",
+                            "toName": "上海中桥职业技术学院",
+                            "coords": [[121.959337, 31.524654], [121.309682, 30.806304]]
                         },
                             {
-                                "fromName": "黑龙江",
-                                "toName": "舒兰",
-                                "coords": [[126.661669, 45.742347], [126.965607, 44.406106]]
-                            },
-                            {
-                                "fromName": "黑龙江",
-                                "toName": "胶州",
-                                "coords": [[126.661669, 45.742347], [120.033382, 36.26468]]
+                                "fromName": "上海赛车场",
+                                "toName": "上海立达学院",
+                                "coords": [[121.232069, 31.343239], [121.327505, 30.942683]]
                             }
                         ]
                     }, {
@@ -98,16 +118,17 @@
                 mapModel.enableScrollWheelZoom(true)
                 mapModel.setMinZoom(4)
                 mapModel.setMaxZoom(20)
-                // const bd = new BMap.Boundary();
-                // bd.get('河南', function (rs) {
-                //     rs.boundaries.forEach(item => {
-                //         const hole = new BMap.Polygon(item, {
-                //             fillColor: 'blue',
-                //             fillOpacity: 0.2
-                //         })
-                //         mapModel.addOverlay(hole);
-                //     })
-                // });
+                const bd = new BMap.Boundary();
+                bd.get('河南', function (rs) {
+                    rs.boundaries.forEach(item => {
+                        const hole = new BMap.Polygon(item, {
+                            fillColor: 'blue',
+                            fillOpacity: 0.2
+                        })
+                        mapModel.addOverlay(hole);
+                        // mapModel.setViewport(hole.getPath())不生效
+                    })
+                });
             },
 
         },
