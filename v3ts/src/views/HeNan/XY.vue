@@ -20,8 +20,8 @@
                 const visible = true
                 const vm = openModal({
                     visible,
-                    title: '标题',
-                    content: '对话框内容',
+                    title: '标题(slot)',
+                    content: '对话框内容(slot)',
                     ok: () => {
                         console.log('ok');
                         return false

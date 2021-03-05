@@ -26,6 +26,9 @@ export default {
 .main {
   width: 100%;
   height: calc(100% - 60px);
+  padding: 0.5rem;
+  box-sizing: border-box;
+  background-color: #2B5084;
   /*background: #ebf5f8;*/
   p {
     color: red;

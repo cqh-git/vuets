@@ -36,5 +36,83 @@ export default {
                 // h('p', {}, {son2: () => 'son2'})//v-slot:son2
             ])
         },
+    },
+    'myInput': {
+        props: {
+            firstName: String
+        },
+        emits: ['update:firstName'],
+        template: `<input type="text" :value="firstName" @input="$emit('update:firstName', $event.target.value)">`
+    },
+    "myComponent": {
+        props: {
+            modelValue: String,//官方api
+            modelModifiers: {//官方api
+                default: () => ({})
+            }
+        },
+        emits: ['update:modelValue'],
+        created() {
+            console.log((this as any).modelModifiers) // { capitalize: true }
+            console.log((this as any).modelValue)
+        },
+        methods: {
+            emitValue(e: any) {
+                let value = e.target.value
+                if ((this as any).modelModifiers.capitalize) {
+                    value = value.charAt(0).toUpperCase() + value.slice(1)
+                }
+                (this as any).$emit('update:modelValue', value)
+            }
+        },
+        template: `<input type="text" :value="modelValue" @input="emitValue">`
+    },
+    "myComponents": {
+        props: ['description', 'descriptionModifiers'],
+        // 对于带参数的 v-model 绑定，生成的 prop 名称将为 arg + "Modifiers"
+        emits: ['update:description'],
+        template: `<input type="text" :value="description" @input="$emit('update:description', $event.target.value)">`,
+        created() {
+            console.log('description', (this as any).description)
+            console.log('descriptionModifiers', (this as any).descriptionModifiers) // { capitalize: true }
+        }
+    },
+    'hz': {
+        render() {
+            console.log((this as any).$slots)
+            return h('div', {style: {color: 'red'}}, {
+                default: () => {
+                    return (this as any).$slots.default({
+                        text: '嗯哼'
+                    })
+                },
+                footer: () => {
+                    return (this as any).$slots.footer({
+                        text: '我想要出现'
+                    })
+                },//footer无法实现
+            })
+        },
+        // render() {
+        //     console.log((this as any).$slots)
+        //     return h('div', {style: {color: 'red'}}, {
+        //         default: () => [(this as any).$slots.default({text: '嗯哼'}), (this as any).$slots.footer({text: '我想要出现'})],
+        //     })
+        // },
+        // render() {
+        //     return h('div', {style: {color: 'red'}}, [
+        //         (this as any).$slots.default({text: '嗯哼'}),
+        //         (this as any).$slots.footer({text: '我是脚步'})
+        //     ])
+        // },
+        // render() {
+        //     return h('div', {style: {color: 'red'}}, (this as any).$slots.footer({text: '我想要出现'}))
+        // }
+        // render() {
+        //     return h('div', {style: {color: 'red'}}, [
+        //         h('p', {innerHTML: '111'}),
+        //         h('p', {innerHTML: '222'}),
+        //     ])
+        // }
     }
 }

@@ -9,10 +9,13 @@
 
     export default {
         name: "NY",
-        setup() {
+        setup(props, context) {
+            console.log(props, context)
             const {push} = useRouter();
             const {ctx} = getCurrentInstance()
-            console.log(ctx)
+            // 全局混入
+            console.log( ctx.$options)
+            ctx.$options.methods.getAlert()
 
             function goDetail() {
                 push({path: "/HN/NYDetail"});

@@ -1,9 +1,13 @@
 <template>
-    <div class="root">
-    </div>
+    <div>rr</div>
 </template>
+
 <script>
     export default {
-        name: 'Home',
+        name: "Foo"
     }
 </script>
+
+<style scoped>
+
+</style>

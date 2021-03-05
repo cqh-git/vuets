@@ -31,7 +31,7 @@ export default {
 .heads {
   width: 100%;
   height: 60px;
-  background: lightgray;
+  background: #002C72;
   display: flex;
   // border-bottom: 1px solid black;
   box-sizing: border-box;

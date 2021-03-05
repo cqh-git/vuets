@@ -1,15 +1,28 @@
 <template>
-	<div class="root">
-		{{dataValue}}111111111111111111111
-	</div>
+    <div class="root">
+        <AsyncPageWithOptions></AsyncPageWithOptions>
+    </div>
 </template>
 <script>
-	export default {
-		name: 'b3',
-		data() {
-			return {
-				dataValue: '我是a1页面'
-			}
-		},
-	}
+    import {defineAsyncComponent, getCurrentInstance} from "vue"
+
+    export default {
+        name: 'WX',
+        abe: 222,
+        created() {
+            console.log(this.$options)
+        },
+        components: {
+            AsyncPageWithOptions: defineAsyncComponent({
+                loader: () => import("./components/son.vue"),
+                delay: 2000,
+                timeout: 3000,
+                suspensible: false,
+                errorComponent: () => import("./components/Foo.vue"),
+                loadingComponent: () => import("./components/Foo.vue"),
+            })
+
+
+        },
+    }
 </script>

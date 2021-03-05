@@ -1,15 +1,16 @@
 <template>
-	<div class="root">
-		{{dataValue}}
-	</div>
+    <div class="root">
+
+    </div>
 </template>
 <script>
-	export default {
-		name: 'b1',
-		data() {
-			return {
-				dataValue: '我是b1页面'
-			}
-		},
-	}
+
+    export default {
+        name: 'NJ',
+        setup(props, context) {
+
+
+            return {}
+        }
+    }
 </script>
