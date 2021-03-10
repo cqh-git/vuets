@@ -1,7 +1,5 @@
 import {h, resolveComponent, VNode, createApp} from 'vue';
-import {resolveAny} from "dns";
-
-export default {
+export default{
     'tag': {
         props: {
             params: {

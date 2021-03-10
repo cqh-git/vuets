@@ -8,7 +8,6 @@
 <script>
     export default {
         custom: "app custom",
-        aaa:1,
         created() {
             console.log(this.$options.custom)
         }
@@ -26,3 +25,5 @@
     /*当前，从父节点传入的插槽内容同时受到父节点和子节点的样式影响。无法显式的创建以slot内容为目标的样式，或者不影响slot内容的样式，vue3.0中增加::v-slotted()*/
     /*::v-slotted(.foo) {}*/
 </style>
+
+

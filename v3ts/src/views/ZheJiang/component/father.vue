@@ -1,6 +1,6 @@
 <template>
     <div class="father">
-        <p>我是a组件</p>
+        <p>我是father组件---{{data}}---$attrs:{{$attrs.val}}---provide:{{user.value}}</p>
         <child v-bind="$attrs" @todo="todo"></child>
     </div>
 </template>
@@ -12,19 +12,14 @@
     export default {
         name: "father",
         inheritAttrs: false,
+        inject: ['user'],
         components: {child},
-        props: {
-            val: {
-                type: String
-            }
-        },
         setup(props, context) {
-
-            const {attrs, emit, slots} = context;
+            const data = ref('默认参数')
             const todo = (val) => {
-                console.log('我是fateher', val)
+                data.value = val
             }
-            return {todo}
+            return {todo, data}
         }
     }
 </script>

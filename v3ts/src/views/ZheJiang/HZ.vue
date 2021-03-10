@@ -1,40 +1,54 @@
 <template>
     <div class="root parent">
-        {{data.name}}
-        {{data.age}}
-        <p>我是HZ组件</p>
-        <father :val="data.dataValue" @todo="todo"></father>
+        <p>
+            我是HZ组件---{{obj.receive}}---姓名:{{obj.name}}---年龄:{{obj.age}}
+        </p>
+        <father :val="obj.attrs" @todo="todo"></father>
+        <div class="btnBox">
+            <button @click="obj.attrs='我不猜'">通过attrs更改</button>
+            ----
+            <button @click="obj.provide='jone'">通过provide更改</button>
+        </div>
     </div>
 </template>
-<script>
-    import father from './component/father'
-    import {reactive, toRef} from 'vue';
+<script lang="ts">
+    import father from './component/father.vue'
+    import {reactive, toRef, computed,defineComponent} from 'vue';
 
-    export default {
+    export default defineComponent({
         name: 'Home',
         inheritAttrs: false,
         components: {father},
-        setup(props, context) {
-            const data = reactive({
+        provide(): object {
+            return {
+                user: computed(() => this.obj.provide)
+            }
+        },
+        setup() {
+            const obj = reactive({
                 name: '小黑',
                 age: 12,
-                dataValue: '你猜我是谁'
+                attrs: '你猜我是谁',
+                provide: 'tom',
+                receive: '默认参数'
             });
-            setTimeout(() => {
-                data.age++
-            }, 5000)
-            const num = toRef(data, 'age');
+            setTimeout(() => obj.age++, 5000)
+            const num = toRef(obj, 'age');
             num.value++;
-            console.log(num.value)
-            data.age++
-            console.log(data.age)
-            const todo = (val) => {
-                console.log('我是HZ组件', val)
+            obj.age++;
+            console.log(obj.age)//14
+            const todo = (val: string): void => {
+                obj.receive = val
             }
             return {
-                todo, data
+                todo, obj
             }
         }
 
-    }
+    })
 </script>
+<style scoped>
+    .btnBox {
+        margin-top: 20px;
+    }
+</style>

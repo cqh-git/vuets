@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    //当 this表达式的值为 any类型的时候，生成一个错误。
+    "noImplicitThis": true,
     "target": "esnext",
     "module": "esnext",
     "strict": true,

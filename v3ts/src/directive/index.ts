@@ -37,5 +37,38 @@ export default {
             const newTel = tel.replace(reg, "$1****$2")
             el.innerHTML = newTel
         }
+    },
+    'tooltip': {
+        mounted(el: any, binding: any) {
+            const tooltip = document.createElement('div');
+            tooltip.setAttribute('class', 'tooltip');
+            el.addEventListener('mouseover', (e: any) => {
+                e.preventDefault();
+                e.stopPropagation()
+                const {top, left, width} = el.getBoundingClientRect();
+                tooltip.innerHTML = `<p>${binding.value}</p>`
+                document.body.appendChild(tooltip);
+                const styleSheets = document.styleSheets[2];
+                styleSheets.insertRule(`.tooltip::after {border-top-color: black !important`, 0);
+                tooltip.style.position = 'absolute';
+                const tooltipStyle = tooltip.getBoundingClientRect();
+                tooltip.style.top = `${top - 15 - Math.ceil(tooltipStyle.height)}px`;
+                tooltip.style.left = `${left - (tooltipStyle.width / 2) + width / 2}px`;
+
+                // 另一种写法
+                // const dynamicStyle = Array.from(document.styleSheets).filter((item: any) => item.ownerNode.id === 'dynamicStyle')[0];
+                // dynamicStyle.insertRule('.tooltip::after {border-top-color: black !important}', 0);
+            })
+
+            el.addEventListener('mouseout', () => {
+                document.body.removeChild(tooltip);
+            })
+        },
+        updated(el: any, binding: any) {
+            alert(1)
+        },
+        beforeUnmount() {
+            console.log(2)
+        }
     }
 }
