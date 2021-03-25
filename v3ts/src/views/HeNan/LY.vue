@@ -24,7 +24,7 @@
         data() {
             return {
                 fm: '',
-                myText: '',
+                myText: '666',
                 text: '222222'
             }
         },

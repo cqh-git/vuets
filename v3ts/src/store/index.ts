@@ -10,6 +10,8 @@ export default createStore({
     },
     getters: {
         menus: (state: any) => state.menus.menus.filter((v: any) => v.name !== "NotFound"),
-        getSelectMenu: (state: any) => state.menus.selectMenu || getSelectMenu()
+        getSelectMenu: (state: any) => state.menus.selectMenu || getSelectMenu(),
+        sideMenuStatus: (state: any) => state.menus.sideMenuStatus,
+        currentPageDetail: (state: any) => state.menus.currentPageDetail,
     }
 })

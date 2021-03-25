@@ -21,6 +21,7 @@ const app = createApp(App)
 
 app.config.globalProperties.mittBus = mittBus//相当于Vue.prototype
 app.config.isCustomElement = tag => tag.startsWith('haha-')
+app.config.isCustomElement = tag => tag.startsWith('abc')
 //自定义组件
 Object.entries(componentObj).forEach(([key, value]) => {
     app.component(key, value)

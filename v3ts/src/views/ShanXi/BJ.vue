@@ -9,7 +9,11 @@
     export default defineComponent({
         name: 'Home',
         setup() {
+
             return {}
         }
     })
 </script>
+<style scoped>
+
+</style>

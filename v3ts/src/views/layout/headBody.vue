@@ -1,21 +1,37 @@
 <template>
-  <div class="headBody">
-    <head-top></head-top>
-    <main-body></main-body>
-  </div>
+    <div class="headBody" :class="{'expandWidth':!sideFlag}">
+        <head-top></head-top>
+        <page-title></page-title>
+        <main-body></main-body>
+    </div>
 </template>
 <script>
-import mainBody from "./modules/mainBody";
-import headTop from "./modules/headTop";
-export default {
-  name: "Home",
-  components: { headTop, mainBody },
-};
+    import mainBody from "./modules/mainBody";
+    import pageTitle from "./modules/pageTitle";
+    import headTop from "./modules/headTop";
+    import {computed, watch} from 'vue';
+    import {useStore} from "vuex";
+
+    export default {
+        name: "Home",
+        components: {headTop, mainBody,pageTitle},
+
+        setup(props, context) {
+            const {getters} = useStore();
+            const sideFlag = computed(() => getters.sideMenuStatus);
+            return {sideFlag}
+        }
+    };
 </script>
-<style scoped  lang="scss">
-.headBody {
-  width: 100%;
-  height: 100%;
-  background: #ebf5f8;
-}
+<style scoped lang="scss">
+    .headBody {
+        width: calc(100% - 64px);
+        height: 100%;
+        background: #ebf5f8;
+        transition: 0.3s width ease-in-out;
+    }
+
+    .expandWidth {
+        width: calc(100% - 200px);
+    }
 </style>

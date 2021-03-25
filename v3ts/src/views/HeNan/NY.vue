@@ -1,7 +1,19 @@
 <template>
     <div class="root">
+        <div style="width: 3200px;height: 10px;background-color: red;"></div>
         <el-button @click="goDetail">跳转</el-button>
         <p v-tooltip:[direction]="text">哈哈哈啊的发撒是水</p>
+        <btn @click="clickThing">
+            <template v-slot:btn1>
+                888
+            </template>
+            <template v-slot:btn2>
+                999
+            </template>
+            <template v-slot:btn3="scope">
+                {{scope.text}}
+            </template>
+        </btn>
     </div>
 </template>
 <script>
@@ -17,23 +29,30 @@
             }
         },
         setup(props, context) {
-            console.log(props, context)
             const {push} = useRouter();
             const {ctx} = getCurrentInstance()
             // 全局混入
             console.log(ctx.$options)
             ctx.$options.methods.getAlert()
 
+            function clickThing() {
+                // alert(1)
+            }
+
             function goDetail() {
                 push({path: "/HN/NYDetail"});
                 ctx.mittBus.$emit('emitThing', '我是传送事件')
             }
 
-            return {goDetail};
+            return {goDetail, clickThing};
         },
     };
 </script>
 <style scoped lang="scss">
+    .root {
+        /*width: 130%;*/
+    }
+
     p {
         margin: 300px auto;
         /*display: inline-block;*/

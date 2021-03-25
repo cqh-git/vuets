@@ -1,5 +1,6 @@
 import {h, resolveComponent, VNode, createApp} from 'vue';
-export default{
+
+export default {
     'tag': {
         props: {
             params: {
@@ -51,8 +52,8 @@ export default{
         },
         emits: ['update:modelValue'],
         created() {
-            console.log((this as any).modelModifiers) // { capitalize: true }
-            console.log((this as any).modelValue)
+            console.log('modelModifiers', (this as any).modelModifiers) // { capitalize: true }
+            console.log('modelValue', (this as any).modelValue)
         },
         methods: {
             emitValue(e: any) {
@@ -73,6 +74,17 @@ export default{
         created() {
             console.log('description', (this as any).description)
             console.log('descriptionModifiers', (this as any).descriptionModifiers) // { capitalize: true }
+        }
+    },
+    'btn': {
+        render() {
+            return h('button', {}, [
+                (this as any).$slots.btn1(),
+                (this as any).$slots.btn2(),
+                (this as any).$slots.btn3({
+                    text:'777'
+                }),
+            ])
         }
     },
     'hz': {

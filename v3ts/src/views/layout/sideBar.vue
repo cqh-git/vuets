@@ -28,8 +28,8 @@
                     <span>{{ $t("menu." + item.name) }}</span>
                 </template>
                 <template v-for="son in item.children" :key="son.id">
-                    <router-link :to="item.path + '/' + son.path" v-if="son.type === 1">
-                        <el-menu-item :index="son.id" v-if="son.level === 1">
+                    <router-link :to="item.path + '/' + son.path" v-if="son.meta.type === 1">
+                        <el-menu-item :index="son.id" v-if="son.meta.level === 2">
                             <span>{{ $t("menu." + son.name) }}</span>
                         </el-menu-item>
                     </router-link>
@@ -63,6 +63,7 @@
 
             function clickExpand() {
                 isCollapse.value = !isCollapse.value;
+                commit('changeMenuStatus', isCollapse.value)
             }
 
             return {
@@ -103,7 +104,7 @@
             background: #b887f8;
             margin: 15px auto;
             cursor: pointer;
-            transition: all 0.5s;
+            transition: 0.3s width ease-in-out;
             transform: rotate(45deg);
             border-radius: 2px;
         }
