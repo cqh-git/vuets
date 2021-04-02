@@ -50,7 +50,7 @@ export default defineComponent({
       router.push({ path: "/login" });
     }
     function changeLanguage(){
-           alert(1)
+           // alert(1)
     }
     function changeColor(newColor: any) {
       changeThemeColor(newColor).then(() => {

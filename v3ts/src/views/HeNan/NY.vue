@@ -2,7 +2,7 @@
     <div class="root">
         <div style="width: 3200px;height: 10px;background-color: red;"></div>
         <el-button @click="goDetail">跳转</el-button>
-        <p v-tooltip:[direction]="text">哈哈哈啊的发撒是水</p>
+        <p v-tooltip:[direction]="text" class="textTooltip">哈哈哈啊的发撒是水</p>
         <btn @click="clickThing">
             <template v-slot:btn1>
                 888
@@ -17,7 +17,7 @@
     </div>
 </template>
 <script>
-    import {getCurrentInstance} from 'vue'
+    import {getCurrentInstance, onBeforeUnmount, onMounted, ref} from 'vue'
     import {useRouter} from "vue-router";
 
     export default {
@@ -30,13 +30,12 @@
         },
         setup(props, context) {
             const {push} = useRouter();
-            const {ctx} = getCurrentInstance()
+            const {ctx} = getCurrentInstance();
             // 全局混入
-            console.log(ctx.$options)
             ctx.$options.methods.getAlert()
 
             function clickThing() {
-                // alert(1)
+                alert('啊哈')
             }
 
             function goDetail() {
@@ -49,15 +48,14 @@
     };
 </script>
 <style scoped lang="scss">
-    .root {
-        /*width: 130%;*/
+    .textTooltip {
+        margin-top: 100px;
     }
 
-    p {
-        margin: 300px auto;
-        /*display: inline-block;*/
-        height: 30px;
-        width: 300px;
-        background-color: chocolate;
+    .countDown {
+        font-size: 40px;
+        background-image: -webkit-linear-gradient(bottom, red, #fd8403, yellow);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 </style>
